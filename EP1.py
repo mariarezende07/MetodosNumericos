@@ -16,19 +16,36 @@ def decompose_LU(vetores, n):
     l = np.zeros(n)
     u[0] = vetores[2][0]
     for i in range(1,n):
-        l[i] = (vetores[1][i]/u[i-1])
-        u[i] = vetores[2][i] - ( l[i] * vetores[3][i-1] )
+        l[i] = (vetores[0][i]/u[i-1])
+        u[i] = vetores[1][i] - ( l[i] * vetores[2][i-1] )
     return([l,u])
 
-# def tridigonal_system(vetores,n):
 
+def tridigonal_system(LU,vetores,n):
+    y = np.empty(n)
+    y[0] = vetores[3][0]
+    y[1:] = [vetores[3][i] - LU[1][i]*y[i-1] for i in range(1,n)]
+    
+    x = np.empty(n)
+    x[n-1] = y[n-1]/LU[1][n-1]
+    x[0:n-2] = [(y[i]-(vetores[2][i]*x[i+1]))/LU[1][i] for i in range(1,n-1)]
+    return [x,y]
 
-
-
-# tic = time.perf_counter()
+# def tridigonal_ciclic_system(LU,vetores,n):
+    
+#     x = np.empty(n)
+#     x[n-1] = (vetores[3][n-1] - (vetores[2][n-1]*))()
+#     return
+tic = time.perf_counter()
+vetores = tridigonal_ciclic_matrix(20)
+LU = decompose_LU(vetores, 20)
+tridigonal_system(LU, vetores, 20)
+toc = time.perf_counter()
+print("meu:",toc-tic)
+# 
 # ciclic_linear_matrix(20)
-# toc = time.perf_counter()
+# 
 
-# print("meu:",toc-tic)
+# 
 
 
