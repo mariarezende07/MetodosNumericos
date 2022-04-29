@@ -3,13 +3,13 @@ import time
 from typing import List, Tuple
 
 def tridigonal_ciclic_matrix(n:int) -> Tuple[np.ndarray, np.ndarray]:
-    """_summary_
+    """ Gera uma sistema linear com uma matriz tridiagonal ciclica
 
     Args:
-        n (int): _description_
+        n (int): dimensão da matriz
 
     Returns:
-        Tuple[np.ndarray, np.ndarray]: _description_
+        Tuple[np.ndarray, np.ndarray]: Matriz A e d do sistema linear
     """
     index = range(1,n+1)
     a = list(map((lambda x : (2*x -1)/(4*x) if x <= n - 1 else (2*n -1)/(2*n)), index))
@@ -21,14 +21,14 @@ def tridigonal_ciclic_matrix(n:int) -> Tuple[np.ndarray, np.ndarray]:
     return A,d
 
 def decompose_LU(A:np.ndarray, n:int)->List[np.ndarray]:
-    """_summary_
+    """Faz a decomposição LU de uma matriz diagonal qualquer
 
     Args:
-        A (np.ndarray): _description_
-        n (int): _description_
+        A (np.ndarray): Matriz do lado esquerdo do sistema linear
+        n (int): Dimensão da matriz
 
     Returns:
-        List[np.ndarray]: _description_
+        List[np.ndarray]: Lista com os coeficientes L e U
     """
     u = np.empty(n)
     l = np.empty(n)
@@ -40,16 +40,17 @@ def decompose_LU(A:np.ndarray, n:int)->List[np.ndarray]:
 
 
 def tridigonal_system(LU:List[np.ndarray],A:np.ndarray,d:np.ndarray,n:int) -> np.ndarray:
-    """_summary_
+    """Resolve o sistema linear de uma matriz tridiagonal a partir da 
+    decomposição LU
 
     Args:
-        LU (List[np.ndarray]): _description_
-        A (np.ndarray): _description_
-        d (np.ndarray): _description_
-        n (int): _description_
+        LU (List[np.ndarray]): Coeficientes L e U
+        A (np.ndarray): Matriz tridiagonal
+        d (np.ndarray): Lado direito do sistema linear
+        n (int): Dimensão da matriz
 
     Returns:
-        np.ndarray: _description_
+        np.ndarray: Array X com a resolução do sistema
     """
     y = np.empty(n)
     y[0] = d[0]    
@@ -62,15 +63,16 @@ def tridigonal_system(LU:List[np.ndarray],A:np.ndarray,d:np.ndarray,n:int) -> np
     return x
 
 def tridigonal_ciclic_system(A:np.ndarray,d:np.ndarray,n:int)->np.ndarray:
-    """_summary_
+    """Resolve o sistema linear de uma matriz tridiagonal cíclica, reaproveitando
+    o algoritmo para matrizes tridiagonais simples
 
     Args:
-        A (np.ndarray): _description_
-        d (np.ndarray): _description_
-        n (int): _description_
+        A (np.ndarray): Matriz tridiagonal
+        d (np.ndarray): Lado direito do sistema linear
+        n (int): Dimensão da matriz
 
     Returns:
-        np.ndarray: _description_
+        np.ndarray: Array X com a resolução do sistema
     """
     v = np.zeros(n-1)
     v[0] = A[0][0]
