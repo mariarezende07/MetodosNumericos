@@ -1,5 +1,5 @@
 import numpy as np
-import time
+from timeit import default_timer as timer
 from typing import List, Tuple
 
 def tridigonal_ciclic_matrix(n:int) -> Tuple[np.ndarray, np.ndarray]:
@@ -12,7 +12,7 @@ def tridigonal_ciclic_matrix(n:int) -> Tuple[np.ndarray, np.ndarray]:
         Tuple[np.ndarray, np.ndarray]: Matriz A e d do sistema linear
     """
     index = range(1,n+1)
-    a = list(map((lambda x : (2*x -1)/(4*x) if x <= n - 1 else (2*n -1)/(2*n)), index))
+    a = list(map((lambda x : (2*x -1)/(4*x) if x < n else (2*n -1)/(2*n)), index))
     b = [2] * (n)
     c = list(map((lambda x: 1- a[x-1]), index))
     d= list(map((lambda x: np.cos((2 * np.pi * x**2)/n**2)),index))
@@ -21,7 +21,7 @@ def tridigonal_ciclic_matrix(n:int) -> Tuple[np.ndarray, np.ndarray]:
     return A,d
 
 def decompose_LU(A:np.ndarray, n:int)->List[np.ndarray]:
-    """Faz a decomposição LU de uma matriz diagonal qualquer
+    """Faz a decomposição LU de uma matriz tridiagonal qualquer
 
     Args:
         A (np.ndarray): Matriz do lado esquerdo do sistema linear
@@ -85,9 +85,3 @@ def tridigonal_ciclic_system(A:np.ndarray,d:np.ndarray,n:int)->np.ndarray:
     for i in range(n-2,-1,-1):
         x[i] = y_til[i] - x[-1]*z_til[i] 
     return x
-
-tic = time.perf_counter()
-A,d = tridigonal_ciclic_matrix(20)
-tridigonal_ciclic_system(A,d, 20)
-toc = time.perf_counter()
-print("Tempo:",toc-tic)
