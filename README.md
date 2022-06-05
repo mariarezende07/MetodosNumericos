@@ -1,5 +1,5 @@
 <h1 align="center">
-    🔢 Decomposicão LU para Matrizes Tridiagonais
+    🔢 Exercício programa de Métodos Numéricos
 </h1>
 
 <div style="text-align:center">
@@ -11,32 +11,64 @@
 - [⏯ Introdução](#-introdução)
 - [📄 Arquivos](#-arquivos)
   - [*main.py*](#mainpy)
-  - [*functions.py*](#functionspy)
-  - [*tests.py*](#testspy)
+  - [src/](#src)
+    - [*matrixes.py*](#matrixespy)
+    - [*integrals.py*](#integralspy)
+    - [*preprocessing_data.py*](#preprocessing_datapy)
+  - [*tests/*](#tests)
+    - [*matrixes_tests.py*](#matrixes_testspy)
+    - [*integrals_tests.py*](#integrals_testspy)
 - [🚀 Execução](#-execução)
 - [✨ Contribuidores](#-contribuidores)
 
 ## ⏯ Introdução
 
-Este projeto se refere à tarefa 01 da matéria de MAP3121 - Métodos Numéricos e Aplicações. Foi proposta a realização de um projeto capaz de gerar as matrizes e resolver um sistema tridiagonal cíclico a partir da decomposição LU desse sistema.
+Este projeto se refere às tarefas 01 e 02 da matéria de MAP3121 - Métodos Numéricos e Aplicações. Na primeira tarefa, foi proposta a realização de um projeto capaz de gerar as matrizes e resolver um sistema tridiagonal cíclico a partir da decomposição LU desse sistema. Na segunda tarefa, foi proposta a realização de um algoritmo que utiliza as formulas de Gauss para calcular integrais duplas. Para realizar a verificação do algoritmo, foram feitos diversos testes propostos.
 
 ## 📄 Arquivos
 
-O projeto está dividido em três arquivos: *main.py*, *functions.py* e *tests.py*
+Para facilitar a organização do código, e modularizá-lo melhor para a realização do próximo exercício, os arquivos foram dividos em pastas e com uma *main.py* que permite observar os resultados dos testes realizados.
+```
+
+├── .gitignore
+├── src/
+    ├── integrals.py
+    ├── matrixes.py
+    ├── preprocessing_data.py
+├── tests/
+    ├── integrals_tests.py
+    ├── matrixes_tests.py
+├── README.md
+├── dados.txt
+└── main.py
+```
 
 ### *main.py* 
 Código principal do projeto. Ao rodar ele, você pode escolher entre dois modos:
 
 <ol>
-<li> Matriz por dimensão: Imprime para o usuário a matriz tridiagonal cíclica gerada a partir de uma dada dimensão
-<li> Verificar tempo do algoritmo: Plota um gráfico que mostra a relação do tempo tomado pelo algoritmo em relação ao tamanho da matriz
+<li> Matrizes: Realiza os testes implementados para as matrizes, que incluem a resolução de um sistema tridiagonal cíclico e uma verificação do tempo do algoritmo
+<li> Integrais: Imprime a resolução dos 4 exemplos requisitados pelo exercício programa
 </ol>
 
-### *functions.py*
-Possui as funções utilizadas para calcular os vetores, decomposições e o sistema das matrizes tridiagonais.
+### src/
+Agrupa as funções utilizadas nos dois exercícios programas. 
 
-### *tests.py* 
-Possui as funções de teste que serão rodadas por meio da *main.py*.
+#### *matrixes.py*
+Possui as funções utilizadas para calcular os vetores, decomposições e o sistema das matrizes tridiagonais.
+#### *integrals.py*
+Contém a função da formula de Gauss, responsável por resolver integrais duplas por meio da somatória entre intervalos ajustados.
+#### *preprocessing_data.py*
+Faz o processamento dos dados.txt que contem os pesos utilizados na formula de Gauss, transformando o txt em 3 dataframes diferentes
+
+### *tests/* 
+Agrupa os testes utilizados para verificar os algoritmos.
+
+#### *matrixes_tests.py*
+Realiza os testes gerando uma matrix tridiagonal cíclica e resolvendo seu sistema. Também checa o tempo de funcionamento do algoritmo.
+
+#### *integrals_tests.py*
+Realiza os testes para verificar o algoritmo de cálculo de integrais duplas. Verifica o volume de um cubo a partir de uma aresta, volume de um tetraedro a partir de seus vértices, volume de uma superfície descrita por uma função exponencial e o volume da calota e do sólido de revolução descritos no Exemplo 4.
 
 ## 🚀 Execução
 
