@@ -1,4 +1,13 @@
-from matrixes_tests import *
+import pandas as pd
+import numpy as np
+
+from typing import List, Tuple
+
+from src.preprocessing_data import *
+from src.integrals import *
+from src.matrixes import *
+from tests.integrals_tests import *
+from tests.matrixes_tests import *
 
 def main():
     """Função principal da aplicação.
