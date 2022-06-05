@@ -60,7 +60,7 @@ def superficie(plano:List, limites:List, nos:pd.DataFrame) -> Tuple[float,float]
     Então, integra a area e a superficie nos limites dados para achar a area e o volume
 
     Args:
-        plano (List): Recebe a seguinte lista com os multiplicadores e expoentes de x e y: [mx,ex,my,py]
+        plano (List): Recebe a seguinte lista com os multiplicadores e expoentes de x e y: [mx,ex,my,ey]
         limites (List): Limites dados para calcular as integrais duplas        
         nos (pd.DataFrame): Tabela dos nós e seus respectivos pesos
 
