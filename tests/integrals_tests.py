@@ -1,3 +1,8 @@
+from typing import List, Tuple
+import pandas as pd
+import numpy as np
+from src.integrals import *
+
 def volume_cubo(aresta: float, nos:pd.DataFrame) -> float:
     """Calcula o volume de um cubo dado o tamanho de uma aresta com integrais duplas
 
@@ -50,12 +55,12 @@ def area_from_curves(curva: str, limites_1:List, limites_2:List, nos:pd.DataFram
     volume_2 = gauss_formula(limites_2,curva,nos)
     return volume_1, volume_2
 
-def superficie(plano:str, limites:List, nos:pd.DataFrame) -> Tuple[float,float]:
+def superficie(plano:List, limites:List, nos:pd.DataFrame) -> Tuple[float,float]:
     """A partir de uma equação de superficie expoencial, calcula a equação da area como dado pelo exemplo.
     Então, integra a area e a superficie nos limites dados para achar a area e o volume
 
     Args:
-        plano (str): Equação da superficie que se deseja calcular a area e o volume
+        plano (List): Recebe a seguinte lista com os multiplicadores e expoentes de x e y: [mx,ex,my,py]
         limites (List): Limites dados para calcular as integrais duplas        
         nos (pd.DataFrame): Tabela dos nós e seus respectivos pesos
 

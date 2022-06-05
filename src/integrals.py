@@ -1,3 +1,7 @@
+from typing import List, Tuple
+import pandas as pd
+import numpy as np
+
 def gauss_formula(intervalo:List,funcao:str,no:pd.DataFrame) -> float:
     """Aplica a formula de gauss para resolver uma integral dupla dado um determinado intervalo
 

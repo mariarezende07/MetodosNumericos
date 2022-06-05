@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from numpy import ndarray
 from timeit import default_timer as timer
 from typing import List, Tuple
