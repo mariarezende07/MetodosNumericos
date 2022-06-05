@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from preprocessing import *
+from preprocessing import n6,n8,n10
 
 def gauss_formula(intervalo,funcao,no):
     n = len(no)
@@ -28,8 +28,3 @@ def gauss_formula(intervalo,funcao,no):
         
     I *= (b-a)/2
     return I
-
-
-
-
-
