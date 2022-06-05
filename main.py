@@ -53,9 +53,9 @@ def main():
     """
     modo = input("1- Matrizes\n2- Integrais\nDefina o modo: ")
     
-    if modo == 1:
+    if modo == "1":
         matrixes_mode()
-    if modo == 2:
+    if modo == "2":
         integrals_mode()
 
 if __name__ == "__main__":

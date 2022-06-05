@@ -20,6 +20,3 @@ data = pd.concat([data,simetric_data]).sort_index()
 n6 = data.loc[0:2].reset_index(drop=True).sort_values(by=['x_j'])
 n8 = data.loc[3:6].reset_index(drop=True).sort_values(by=['x_j'])
 n10 = data.loc[7:12].reset_index(drop=True).sort_values(by=['x_j'])
-
-
-
