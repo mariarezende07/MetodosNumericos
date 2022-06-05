@@ -1,5 +1,4 @@
 import numpy as np
-from timeit import default_timer as timer
 from typing import List, Tuple
 
 def tridigonal_ciclic_matrix(n:int) -> Tuple[np.ndarray, np.ndarray]:

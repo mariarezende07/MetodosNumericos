@@ -1,4 +1,4 @@
-from tests import *
+from matrixes_tests import *
 
 def main():
     """Função principal da aplicação.

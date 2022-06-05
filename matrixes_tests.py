@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from numpy import ndarray
-from functions import *
+from timeit import default_timer as timer
+from matrixes import *
 
 def matrix_from_dimension(n:int)-> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Calcula um sistema tridiagonal cíclico a partir da dimensão dele
