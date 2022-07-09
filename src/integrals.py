@@ -72,6 +72,3 @@ def gauss_formula_simple(intervalo:List,funcao:str,no:pd.DataFrame) -> float:
     # Multiplica a integral I por uma constante para ajustar o valor no intervalo dado
     F *= (b-a)/2
     return F
-
-
-print(gauss_formula_simple([1,2],"1/x",n6))
