@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy
+import numpy as np
 
 from typing import List, Tuple
 
@@ -68,7 +68,9 @@ def main():
 # if __name__ == "__main__":
 #     main()
 
-# u_barra = temperatura_barra(1,7,"np.exp(x)","np.exp(x) + 1")
-# print(erro(u_barra,1,7))
-x = 1
-eval("np.exp(x)",{'x':[x]})
+u_barra = temperatura_barra(1,65,"np.exp(x)","np.exp(x) + 1")
+print(erro(u_barra,1,7, lambda x: (x-1)*(np.exp(-x)-1)))
+
+
+# u_barra = temperatura_barra(1,7,"1","12*x*(1-x)-2")
+# print(erro(u_barra,1,7, lambda x: (x**2)*((1-x)**2)))

@@ -20,10 +20,10 @@ def finite_elements(f, k, n, h, x):
     phi_matrix = []
     
     for i in range(1, n+1):
-        print(eval(k,{'x':x[i]}))
-        a.append(-eval(k,{'x':x[i]})/h)
-        b.append(2*eval(k,{'x':x[i]})/h)
-        c.append(-eval(k,{'x':x[i]})/h)
+        print(eval(k,{'x':x[i],'np':np}))
+        a.append(-eval(k,{'x':x[i],'np':np})/h)
+        b.append(2*eval(k,{'x':x[i],'np':np})/h)
+        c.append(-eval(k,{'x':x[i],'np':np})/h)
 
         phi = funcao_chapeu(h, x[i+1], x[i-1])
         d.append(produto_interno(f,  phi[0],  x[i-1], x[i] ) + produto_interno(f,  phi[1], x[i], x[i+1]))
