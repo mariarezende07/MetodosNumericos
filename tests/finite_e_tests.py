@@ -1,9 +1,10 @@
 import numpy as np
 from src.finite_elements import *
+f = "12*x*(1-x)-2"
 
-def temperatura_barra(L,n, k):
+def temperatura_barra(L,n, k, f):
 
-    f = "12*x*(1-x)-2"
+    
     h = L/(n+1)
     x = [(i * h) for i in range(0,n+2)]
         
@@ -19,5 +20,3 @@ def erro(u_barra, L, n):
 
     return np.max(np.absolute(erro)), u_x, u_barra
 
-u_barra = temperatura_barra(1,7,"1")
-print(erro(u_barra,1,7))

@@ -66,7 +66,6 @@ def gauss_formula_simple(intervalo:List,funcao:str,no:pd.DataFrame) -> float:
         x_i = no["x_j"][i]
         w_i = no["w_j"][i]
         # Ajusta X e Y no intervalo dado
-        
         x = ((b-a)*x_i + a + b)/2     
         F += eval(funcao) * w_i  # Dada a função f(x,y), calcula os valores com os resultados obtidos e pelo peso
         

@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+import numpy
 
 from typing import List, Tuple
 
@@ -7,6 +7,7 @@ from src.preprocessing_data import *
 from src.matrixes import *
 from tests.integrals_tests import *
 from tests.matrixes_tests import *
+from tests.finite_e_tests import *
 
 def matrixes_mode():
     modo = input("1- Matriz por dimensão\n2- Verificar tempo do algoritmo\nDefina o modo: ")
@@ -48,6 +49,10 @@ def integrals_mode():
         """)
         no_atual+=1
 
+def temperature_mode():
+    modo = input("1- Matrizes\n2- Integrais\nDefina o modo: ")
+
+
 def main():
     """Função principal da aplicação.
     """
@@ -57,7 +62,13 @@ def main():
         matrixes_mode()
     if modo == "2":
         integrals_mode()
+    if modo == "3":
+        temperature_mode()
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
+# u_barra = temperatura_barra(1,7,"np.exp(x)","np.exp(x) + 1")
+# print(erro(u_barra,1,7))
+x = 1
+eval("np.exp(x)",{'x':[x]})
