@@ -67,7 +67,6 @@ def finite_elements(f: str, k: str, n: int, h:float, x: List[int]) -> np.ndarray
         # Armazenamento dos valores de phi no intervalo [x_i-1,x_i]
         phi_matrix.append(eval(phi[0],{'x': x[i]}))
     # Correção dos valores para matrizes tridiagonais
-    
     a.pop()
     c.pop(0)
     c.append(0)

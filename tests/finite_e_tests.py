@@ -39,7 +39,19 @@ def temperatura_real(f_u: Callable, L: float, n:int) -> List[float]:
     return u_x
 
 
-def erro(u_barra, L, n, u_x):
+def erro(u_barra: np.ndarray, L:float, n: int, u_x:List[float]) -> float:
+    """Calcula o erro maximo absoluto entre a funcao teorica e a calculada pelo metodo
+    dos elementos finitos
+
+    Args:
+        u_barra (np.ndarray): Funcao calculada pelo metodo dos elementos finitos
+        L (float): Comprimento da barra
+        n (int): Dimensao do espaco
+        u_x (List[float]): Funcao teoria
+
+    Returns:
+        float: Erro maximo absoluto
+    """
     h = L/(n+1)
     x = [(i * h) for i in range(0,n+2)]
     erro = np.subtract(u_x,u_barra)
@@ -93,9 +105,6 @@ def grafico_erro(f_u: Callable, k: str, f_u_barra: str, L: float) -> None:
                    height=600, width=1400)
     fig.show()
 
-def curva_prevista(x,u_barra):
-    return np.poly1d(np.polyfit(x,u_barra, 2))
-
 def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str, n: int, kvar: bool) -> List[float]:
     """Calcula a variacao da temperatura levando em conta o calor que entra e sai
 
@@ -125,7 +134,17 @@ def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str
     
     return temperatura_barra(L,n, k, Q)
 
-def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k, kvar):
+def grafico_forcantes_calor_cte(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k:str, kvar:bool) -> None:
+    """Gera os graficos para as forcantes de calor
+
+    Args:
+        Q_n_0 (float): Constante de resfriamento
+        Q_p_0 (float): Maximo calor gerado no centro do chip
+        sigma (float): Variacao da geracao de calor
+        theta (float): Constante da variacao do calor
+        k (str): Condutividade termica do material
+        kvar (bool): verifica se k está variando de material
+    """
     fig = make_subplots(rows=1, cols=4, subplot_titles=("N = 7", "N = 15", "N = 31", "N = 63"))
     nums = [7,15,31,63]
     for i in range(len(nums)):
