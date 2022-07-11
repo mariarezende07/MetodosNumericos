@@ -122,7 +122,7 @@ def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str
     """
 
     L = 20e-03
-    d = -1
+    d = 5e-3
     #
 
     Q_plus = str(Q_p_0) + "*np.exp( -( (x-"+str(L)+")/2 )**2 )/("+str(sigma)+"**2))"
@@ -130,7 +130,7 @@ def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str
     
     Q = "(" +Q_plus + ") - (" + Q_minus + ")"
     if kvar:
-        return temperatura_barra(1,7,"3.6 if(x >= "+str(L)+"/2 - "+str(d)+" and  x <= "+str(L)+"/2 + "+str(d)+") else 60",Q)
+        return temperatura_barra(1,n,k,Q)
     
     return temperatura_barra(L,n, k, Q)
 

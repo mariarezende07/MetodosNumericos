@@ -96,9 +96,11 @@ def temperature_mode():
         Q_p_0 = [50, 50]
         sigma = [10, 0.1]
         theta = [10, 0.2]
-        k = "3.6"
         for i in range(len(Q_n_0)):
-            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k, True)
+            L = 20e-03
+            d = 5e-3
+            k = "3.6e03 if(x >= "+str(L)+"/2 - "+str(d)+" and  x <= "+str(L)+"/2 + "+str(d)+") else 60e03"
+            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k , True)
 
         
 
@@ -116,10 +118,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# u_barra = temperatura_barra(1,65,"np.exp(x)","np.exp(x) + 1")
-# print(erro(u_barra,1,7, lambda x: (x-1)*(np.exp(-x)-1)))
-
-
-# u_barra = temperatura_barra(1,7,"1","12*x*(1-x)-2")
-# print(erro(u_barra,1,7, lambda x: (x**2)*((1-x)**2)))
