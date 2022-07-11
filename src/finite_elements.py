@@ -21,7 +21,7 @@ def produto_interno(v: str,w: str,a:float,b:float) -> float:
     return gauss_formula_simple([a,b],f_str,n2)
 
 def funcao_chapeu(h: float, xf: float, xb: float) -> np.ndarray:
-    """_summary_
+    """Calculo da funcao chapeu de phi
 
     Args:
         h (float): Valor do espacamento calculado
@@ -49,7 +49,7 @@ def finite_elements(f: str, k: str, n: int, h:float, x: List[int]) -> np.ndarray
         np.ndarray: Lista de valores de u_n(x) calculado
     """
     # Instanciamento de listas vazias que terao seu valor definido no loop abaixo
-    a = []
+    a = [0]
     b = []
     c = []
     d  = []
@@ -57,9 +57,9 @@ def finite_elements(f: str, k: str, n: int, h:float, x: List[int]) -> np.ndarray
     
     for i in range(1, n+1):
         # Definicao das diagonais da matriz
-        a.append(-eval(k,{'x':x[i],'np':np,'L':1,'d':-1})/h)
-        b.append(2*eval(k,{'x':x[i],'np':np,'L':1,'d':-1})/h)
-        c.append(-eval(k,{'x':x[i],'np':np,'L':1,'d':-1})/h)
+        a.append(-1 * pow((1/h),2) * gauss_formula_simple([x[i], x[i+1]], k,n2))
+        b.append(pow((1/h),2) * gauss_formula_simple([x[i], x[i+1]],k,n2) + pow((-1/h),2) * gauss_formula_simple([x[i-1], x[i]], k,n2))
+        c.append(-1 * pow((1/h),2) * gauss_formula_simple([x[i-1], x[i]], k,n2))
         # Cálculo da funcao chapeu de phi
         phi = funcao_chapeu(h, x[i+1], x[i-1])
         # Calculo dos produtos internos que definem o lado direito do sistema
@@ -67,8 +67,10 @@ def finite_elements(f: str, k: str, n: int, h:float, x: List[int]) -> np.ndarray
         # Armazenamento dos valores de phi no intervalo [x_i-1,x_i]
         phi_matrix.append(eval(phi[0],{'x': x[i]}))
     # Correção dos valores para matrizes tridiagonais
-    a[0] = 0
-    c[-1] = 0
+    
+    a.pop()
+    c.pop(0)
+    c.append(0)
     # Decomposicao LU da matriz tridiagonal gerada
     LU = decompose_LU([a,b,c],n)
     # Resolucao do sistema

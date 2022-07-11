@@ -64,7 +64,6 @@ def gauss_formula_simple(intervalo:List,funcao:str,no:pd.DataFrame) -> float:
     # Realiza as duas somatórias necessárias
     for i in range(n):
         x_i = float(no["x_j"][i])
-        print(x_i)
         w_i = float(no["w_j"][i])
         # Ajusta X e Y no intervalo dado
         x = ((b-a)*x_i + a + b)/2     

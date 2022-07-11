@@ -69,7 +69,7 @@ def temperature_mode():
 
     if modo == "2":
         questao = input("1- k(x) = 1, q(x) = 0, f(x) = 12*x*(1-x)-2\n\
-            2- k(x) = e^x, q(x) = 0, f(x) = e^x + 1\n")
+        2- k(x) = e^x, q(x) = 0, f(x) = e^x + 1\n")
         if questao == "1":
             for n in nums:
                 u_barra = temperatura_barra(1,n, "1", "12*x*(1-x)-2")
@@ -83,7 +83,15 @@ def temperature_mode():
                 erro_maximo = erro(u_barra, 1, n, u_x)
                 print(f"O erro para N = {n} é: {erro_maximo}")
 
-        # if questao == "3":
+    if modo == "3":
+        Q_n_0 = [50,100,50,100]
+        Q_p_0 = [100,50,100,50]
+        sigma = [10,1,5,2]
+        theta = [5,2,10,1]
+        k = "3.6"
+        for i in range(len(Q_n_0)):
+            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k)
+
         
 
 def main():

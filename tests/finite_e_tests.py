@@ -38,7 +38,7 @@ def temperatura_real(f_u: Callable, L: float, n:int) -> List[float]:
     u_x = [f_u(x[i]) for i in range(1,n+1)]
     return u_x
 
-print(temperatura_barra(1,7,"3.6 if(x >= L/2 - d and  x <= L/2 + d) else 60","np.exp(x) + 1"))
+#print(temperatura_barra(1,7,"3.6 if(x >= L/2 - d and  x <= L/2 + d) else 60","np.exp(x) + 1"))
 
 def erro(u_barra, L, n, u_x):
     h = L/(n+1)
@@ -113,15 +113,15 @@ def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str
     """
     L = 1
 
-    Q_plus = str(Q_p_0) + "*np.exp((-((x-"+str(L)+")/2)**2)/("+str(sigma)+"**2))"
-    Q_minus = str(Q_n_0) + "*(np.exp(-((x)**2)/("+str(theta)+"**2))+np.exp(-((x-"+str(L)+")**2)/("+str(theta)+"**2)))"
+    Q_plus = str(Q_p_0) + "*np.exp( -( (x-"+str(L)+")/2 )**2 )/("+str(sigma)+"**2))"
+    Q_minus = str(Q_n_0) + "*( np.exp(-((x)**2) /("+str(theta)+"**2))+np.exp(-((x-"+str(L)+")**2)/("+str(theta)+"**2)))"
     
     Q = "(" +Q_plus + ") - (" + Q_minus + ")"
     
     return temperatura_barra(L,n, k, Q)
 
 def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k):
-    fig = make_subplots(rows=1, cols=4, subplot_titles=("Q_0+ ="+str(Q_p_0)+"Q_0- = ", "N = 15", "N = 31", "N = 63"))
+    fig = make_subplots(rows=1, cols=4, subplot_titles=("N = 7", "N = 15", "N = 31", "N = 63"))
     nums = [7,15,31,63]
     for i in range(len(nums)):
         n = nums[i]
@@ -133,9 +133,9 @@ def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k):
             x= x,
             y= np.array(u_barra),
             mode='lines+markers',
-            name='un(x)',      
-            row=1, col=1+i))
-    fig.update_layout(title='Temperatura calculada levando em conta parâmetros variáveis',
+            name='un(x)'),      
+            row=1, col=1+i)
+    fig.update_layout(title="Temperatura calculada levando em conta parâmetros variáveis\nQ_0+ ="+str(Q_p_0)+"Q_0- = "+str(Q_p_0)+"\nsigma ="+str(sigma)+"theta = "+str(theta),
                    xaxis_title='Espaçamento',
                    yaxis_title='Temperatura da barra',
                    height=600, width=1400)
