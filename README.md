@@ -13,10 +13,12 @@
 - [📄 Arquivos](#-arquivos)
   - [*main.py*](#mainpy)
   - [src/](#src)
+    - [*finite_elements.py*](#finite_elementspy)
     - [*matrixes.py*](#matrixespy)
     - [*integrals.py*](#integralspy)
     - [*preprocessing_data.py*](#preprocessing_datapy)
   - [*tests/*](#tests)
+    - [*finite_e_tests.py*](#finite_e_testspy)
     - [*matrixes_tests.py*](#matrixes_testspy)
     - [*integrals_tests.py*](#integrals_testspy)
 - [🚀 Execução](#-execução)
@@ -24,7 +26,7 @@
 
 ## ⏯ Introdução
 
-Este projeto se refere às tarefas 01 e 02 da matéria de MAP3121 - Métodos Numéricos e Aplicações. Na primeira tarefa, foi proposta a realização de um projeto capaz de gerar as matrizes e resolver um sistema tridiagonal cíclico a partir da decomposição LU desse sistema. Na segunda tarefa, foi proposta a realização de um algoritmo que utiliza as formulas de Gauss para calcular integrais duplas. Para realizar a verificação do algoritmo, foram feitos diversos testes propostos.
+Este projeto se refere às tarefas da matéria de MAP3121 - Métodos Numéricos e Aplicações. Na primeira tarefa, foi proposta a realização de um projeto capaz de gerar as matrizes e resolver um sistema tridiagonal cíclico a partir da decomposição LU desse sistema. Na segunda tarefa, foi proposta a realização de um algoritmo que utiliza as formulas de Gauss para calcular integrais duplas. Para realizar a verificação do algoritmo, foram feitos diversos testes propostos. Já na terceira, foi proposta a utilização do método dos elementos finitos para calcular a variação de temperatura em um chip.
 
 ## 📄 Arquivos
 
@@ -33,10 +35,12 @@ Para facilitar a organização do código, e modularizá-lo melhor para a realiz
 
 ├── .gitignore
 ├── src/
+    ├── finite_elements.py
     ├── integrals.py
     ├── matrixes.py
     ├── preprocessing_data.py
 ├── tests/
+    ├── finite_e_tests.py
     ├── integrals_tests.py
     ├── matrixes_tests.py
 ├── README.md
@@ -45,16 +49,19 @@ Para facilitar a organização do código, e modularizá-lo melhor para a realiz
 ```
 
 ### *main.py* 
-Código principal do projeto. Ao rodar ele, você pode escolher entre dois modos:
+Código principal do projeto. Ao rodar ele, você pode escolher entre três modos:
 
 <ol>
 <li> Matrizes: Realiza os testes implementados para as matrizes, que incluem a resolução de um sistema tridiagonal cíclico e uma verificação do tempo do algoritmo
 <li> Integrais: Imprime a resolução dos 4 exemplos requisitados pelo exercício programa
+<li> Integrais: Imprime as resoluções dos exercícios propostos pelo exercício programa 3, contendo os gráficos e erros para as equações com ou sem forçantes de calor, e também abrange as que possuem variação de material
 </ol>
 
 ### src/
-Agrupa as funções utilizadas nos dois exercícios programas. 
+Agrupa as funções utilizadas nos três exercícios programas. 
 
+#### *finite_elements.py*
+Possui as funções utilizadas para realizar o cálculo do método dos elementos finitos.
 #### *matrixes.py*
 Possui as funções utilizadas para calcular os vetores, decomposições e o sistema das matrizes tridiagonais.
 #### *integrals.py*
@@ -64,6 +71,9 @@ Faz o processamento dos dados.txt que contem os pesos utilizados na formula de G
 
 ### *tests/* 
 Agrupa os testes utilizados para verificar os algoritmos.
+
+#### *finite_e_tests.py*
+Realiza os testes, plotando os gráficos para as equações apresentadas e também para as forçantes de calor. ALém disso, calcula o erro entre as curvas teóricas e calculadas.
 
 #### *matrixes_tests.py*
 Realiza os testes gerando uma matrix tridiagonal cíclica e resolvendo seu sistema. Também checa o tempo de funcionamento do algoritmo.
