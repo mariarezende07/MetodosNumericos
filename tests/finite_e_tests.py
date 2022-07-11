@@ -38,7 +38,6 @@ def temperatura_real(f_u: Callable, L: float, n:int) -> List[float]:
     u_x = [f_u(x[i]) for i in range(1,n+1)]
     return u_x
 
-#print(temperatura_barra(1,7,"3.6 if(x >= L/2 - d and  x <= L/2 + d) else 60","np.exp(x) + 1"))
 
 def erro(u_barra, L, n, u_x):
     h = L/(n+1)
@@ -97,7 +96,7 @@ def grafico_erro(f_u: Callable, k: str, f_u_barra: str, L: float) -> None:
 def curva_prevista(x,u_barra):
     return np.poly1d(np.polyfit(x,u_barra, 2))
 
-def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str, n: int) -> List[float]:
+def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str, n: int, kvar: bool) -> List[float]:
     """Calcula a variacao da temperatura levando em conta o calor que entra e sai
 
     Args:
@@ -107,25 +106,31 @@ def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str
         theta (float): Constante da variacao do calor
         k (str): Condutividade termica do material
         n (int): Dimensao do espaco
+        kvar (bool): verifica se k está variando de material
 
     Returns:
         List[float]: Lista de valores de u_n(x) calculado
     """
+
     L = 20e-03
+    d = -1
+    #
 
     Q_plus = str(Q_p_0) + "*np.exp( -( (x-"+str(L)+")/2 )**2 )/("+str(sigma)+"**2))"
     Q_minus = str(Q_n_0) + "*( np.exp(-((x)**2) /("+str(theta)+"**2))+np.exp(-((x-"+str(L)+")**2)/("+str(theta)+"**2))"
     
     Q = "(" +Q_plus + ") - (" + Q_minus + ")"
+    if kvar:
+        return temperatura_barra(1,7,"3.6 if(x >= "+str(L)+"/2 - "+str(d)+" and  x <= "+str(L)+"/2 + "+str(d)+") else 60",Q)
     
     return temperatura_barra(L,n, k, Q)
 
-def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k):
+def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k, kvar):
     fig = make_subplots(rows=1, cols=4, subplot_titles=("N = 7", "N = 15", "N = 31", "N = 63"))
     nums = [7,15,31,63]
     for i in range(len(nums)):
         n = nums[i]
-        u_barra = forcantes_calor(Q_n_0,Q_p_0,sigma, theta, k, n)
+        u_barra = forcantes_calor(Q_n_0,Q_p_0,sigma, theta, k, n, kvar)
         L = 20e-3
         h = L/(n+1)
         x = [(i * h) for i in range(1,n+1)]

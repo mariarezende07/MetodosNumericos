@@ -90,7 +90,15 @@ def temperature_mode():
         theta = [10, 0.2]
         k = "3.6"
         for i in range(len(Q_n_0)):
-            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k)
+            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k, False)
+    if modo == "4":
+        Q_n_0 = [100, 100]
+        Q_p_0 = [50, 50]
+        sigma = [10, 0.1]
+        theta = [10, 0.2]
+        k = "3.6"
+        for i in range(len(Q_n_0)):
+            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k, True)
 
         
 
