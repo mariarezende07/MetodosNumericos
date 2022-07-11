@@ -111,10 +111,10 @@ def forcantes_calor(Q_n_0: float,Q_p_0: float,sigma: float, theta: float, k: str
     Returns:
         List[float]: Lista de valores de u_n(x) calculado
     """
-    L = 1
+    L = 20e-03
 
     Q_plus = str(Q_p_0) + "*np.exp( -( (x-"+str(L)+")/2 )**2 )/("+str(sigma)+"**2))"
-    Q_minus = str(Q_n_0) + "*( np.exp(-((x)**2) /("+str(theta)+"**2))+np.exp(-((x-"+str(L)+")**2)/("+str(theta)+"**2)))"
+    Q_minus = str(Q_n_0) + "*( np.exp(-((x)**2) /("+str(theta)+"**2))+np.exp(-((x-"+str(L)+")**2)/("+str(theta)+"**2))"
     
     Q = "(" +Q_plus + ") - (" + Q_minus + ")"
     
@@ -126,7 +126,7 @@ def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k):
     for i in range(len(nums)):
         n = nums[i]
         u_barra = forcantes_calor(Q_n_0,Q_p_0,sigma, theta, k, n)
-        L = 1
+        L = 20e-3
         h = L/(n+1)
         x = [(i * h) for i in range(1,n+1)]
         fig.add_trace(go.Scatter(
@@ -135,7 +135,7 @@ def grafico_forcantes_calor_cte(Q_n_0,Q_p_0,sigma, theta, k):
             mode='lines+markers',
             name='un(x)'),      
             row=1, col=1+i)
-    fig.update_layout(title="Temperatura calculada levando em conta parâmetros variáveis\nQ_0+ ="+str(Q_p_0)+"Q_0- = "+str(Q_p_0)+"\nsigma ="+str(sigma)+"theta = "+str(theta),
+    fig.update_layout(title="Temperatura calculada levando em conta parâmetros variáveis\n Q_0+ ="+str(Q_p_0)+" Q_0- = "+str(Q_n_0)+"\n sigma ="+str(sigma)+" theta = "+str(theta),
                    xaxis_title='Espaçamento',
                    yaxis_title='Temperatura da barra',
                    height=600, width=1400)

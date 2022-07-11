@@ -84,10 +84,10 @@ def temperature_mode():
                 print(f"O erro para N = {n} é: {erro_maximo}")
 
     if modo == "3":
-        Q_n_0 = [50,100,50,100]
-        Q_p_0 = [100,50,100,50]
-        sigma = [10,1,5,2]
-        theta = [5,2,10,1]
+        Q_n_0 = [100, 100]
+        Q_p_0 = [50, 50]
+        sigma = [10, 0.1]
+        theta = [10, 0.2]
         k = "3.6"
         for i in range(len(Q_n_0)):
             grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k)
