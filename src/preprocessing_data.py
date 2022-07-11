@@ -1,3 +1,4 @@
+from decimal import Decimal
 import pandas as pd
 import numpy as np
 
@@ -9,11 +10,14 @@ data = data.dropna()
 # Também excluimos os dados que tem apenas os nomes das colunas duplicados
 data = data.drop(data[data.values == ["x_j"]].index).reset_index(drop=True)
 # Convertemos as strings para doubles longos com dupla precisão
-data = data.astype(np.longdouble)
+
+columns = data.columns
+data[columns[0]] = data[columns[0]].apply(Decimal)
+data[columns[1]] = data[columns[1]].apply(Decimal)
+
 # Para facilitar o manuseio, vamos gerar os dados simétricos e agrupá-los com os outros pontos
 simetric_data = data.copy()
 simetric_data["x_j"] = simetric_data['x_j'].apply(lambda x: x*-1)
-
 data = pd.concat([data,simetric_data]).sort_index()
 
 # Separamos, por posição, os dados de n=6, n=8 e n=10

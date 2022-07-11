@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
 
+
 from typing import List, Tuple
 
 from src.preprocessing_data import *
+
 from src.matrixes import *
 from tests.integrals_tests import *
 from tests.matrixes_tests import *
@@ -50,13 +52,44 @@ def integrals_mode():
         no_atual+=1
 
 def temperature_mode():
-    modo = input("1- Matrizes\n2- Integrais\nDefina o modo: ")
+    nums = [7,15,31,63]
+    modo = input("1- Gráficos com L = 1 para as diferentes dimensões de N\n\
+    2- Erro máximo com L = 1 para as diferentes dimensões de N \n\
+    3- Gráficos do equilíbrio com forçantes de calor\n\
+    4- Gráficos do equilíbrio com variação de material\n\
+    Defina o modo: ")
 
+    if modo == "1":
+        questao = input("1- k(x) = 1, q(x) = 0, f(x) = 12*x*(1-x)-2\n\
+            2- k(x) = e^x, q(x) = 0, f(x) = e^x + 1")
+        if questao == "1":
+            grafico_erro(lambda x: (x**2)*(1-x)**2, "1", "12*x*(1-x)-2", 1)
+        if questao == "2":
+            grafico_erro(lambda x: (x-1)*(np.exp(-x)-1), "np.exp(x)", "np.exp(x) + 1", 1)
+
+    if modo == "2":
+        questao = input("1- k(x) = 1, q(x) = 0, f(x) = 12*x*(1-x)-2\n\
+            2- k(x) = e^x, q(x) = 0, f(x) = e^x + 1\n")
+        if questao == "1":
+            for n in nums:
+                u_barra = temperatura_barra(1,n, "1", "12*x*(1-x)-2")
+                u_x = temperatura_real(lambda x: (x**2)*(1-x)**2, 1, n)
+                erro_maximo = erro(u_barra, 1, n, u_x)
+                print(f"O erro para N = {n} é: {erro_maximo}")
+        if questao == "2":
+            for n in nums:
+                u_barra = temperatura_barra(1,n, "np.exp(x)", "np.exp(x) + 1")
+                u_x = temperatura_real(lambda x: (x-1)*(np.exp(-x)-1), 1, n)
+                erro_maximo = erro(u_barra, 1, n, u_x)
+                print(f"O erro para N = {n} é: {erro_maximo}")
+
+        # if questao == "3":
+        
 
 def main():
     """Função principal da aplicação.
     """
-    modo = input("1- Matrizes\n2- Integrais\nDefina o modo: ")
+    modo = input("1- Matrizes\n2- Integrais\n3- Temperatura num chip\nDefina o modo: ")
     
     if modo == "1":
         matrixes_mode()
@@ -65,11 +98,11 @@ def main():
     if modo == "3":
         temperature_mode()
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
-u_barra = temperatura_barra(1,65,"np.exp(x)","np.exp(x) + 1")
-print(erro(u_barra,1,7, lambda x: (x-1)*(np.exp(-x)-1)))
+# u_barra = temperatura_barra(1,65,"np.exp(x)","np.exp(x) + 1")
+# print(erro(u_barra,1,7, lambda x: (x-1)*(np.exp(-x)-1)))
 
 
 # u_barra = temperatura_barra(1,7,"1","12*x*(1-x)-2")

@@ -26,12 +26,12 @@ def gauss_formula(intervalo:List,funcao:str,no:pd.DataFrame) -> float:
     I = 0
     # Realiza as duas somatórias necessárias
     for i in range(n):
-        x_i = no["x_j"][i]
-        w_i = no["w_j"][i]
+        x_i = float(no["x_j"][i])
+        w_i = float(no["w_j"][i])
         F = 0
         for j in range(n):
-            x_j = no["x_j"][j]
-            w_j = no["w_j"][j]
+            x_j = float(no["x_j"][j])
+            w_j = float(no["w_j"][j])
             # Ajusta X e Y no intervalo dado
             x = ((b-a)*x_i + a + b)/2            
             d = eval(fd) # Dada a função d, calcula o valor com o resultado obtido acima de X
@@ -63,8 +63,9 @@ def gauss_formula_simple(intervalo:List,funcao:str,no:pd.DataFrame) -> float:
     F = 0
     # Realiza as duas somatórias necessárias
     for i in range(n):
-        x_i = no["x_j"][i]
-        w_i = no["w_j"][i]
+        x_i = float(no["x_j"][i])
+        print(x_i)
+        w_i = float(no["w_j"][i])
         # Ajusta X e Y no intervalo dado
         x = ((b-a)*x_i + a + b)/2     
         F += eval(funcao) * w_i  # Dada a função f(x,y), calcula os valores com os resultados obtidos e pelo peso
