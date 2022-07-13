@@ -82,25 +82,26 @@ def temperature_mode():
                 u_x = temperatura_real(lambda x: (x-1)*(np.exp(-x)-1), 1, n)
                 erro_maximo = erro(u_barra, 1, n, u_x)
                 print(f"O erro para N = {n} é: {erro_maximo}")
-
+    volume = (20*20*2)*(10**-9) # m^3
     if modo == "3":
-        Q_n_0 = [100, 100]
-        Q_p_0 = [50, 50]
-        sigma = [10, 0.1]
-        theta = [10, 0.2]
+        Q_p_0 = [100, 100, 100]
+        Q_n_0 = [50, 50, 100]
+        sigma = [10, 0.1, 0.1]
+        theta = [10, 0.2, 0.01]
         k = "3.6"
         for i in range(len(Q_n_0)):
-            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k, False)
+            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k)
     if modo == "4":
-        Q_n_0 = [100, 100]
-        Q_p_0 = [50, 50]
-        sigma = [10, 0.1]
-        theta = [10, 0.2]
+        
+        Q_p_0 = [100, 100, 100]
+        Q_n_0 = [50, 50, 100]
+        sigma = [10, 0.1, 0.1]
+        theta = [10, 0.2, 0.01]
         for i in range(len(Q_n_0)):
-            L = 20e-03
+            L = 20e-3
             d = 5e-3
-            k = "3.6e03 if(x >= "+str(L)+"/2 - "+str(d)+" and  x <= "+str(L)+"/2 + "+str(d)+") else 60e03"
-            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k , True)
+            k = "3.6 if(x >= "+str(L)+"/2 - "+str(d)+" and  x <= "+str(L)+"/2 + "+str(d)+") else 60"
+            grafico_forcantes_calor_cte(Q_n_0[i],Q_p_0[i],sigma[i], theta[i], k)
 
         
 
